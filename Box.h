@@ -12,18 +12,13 @@ public:
 	void Update(int screen_x, int screen_y);
 	
 	double getmX();
-	void setmX(double x);
 	double getmY();
-	void setmY(double y);
 	double getmVx();
-	void setmVx(double vx);
 	double getmVy();
-	void setmVy(double vy);
 	double getmMass();
 	double getmW();
 	double getmH();
 	double getmD();
-	void setmD(double d);
 	double getmX0();
 	double getmY0();
 	double getmVx0();
@@ -33,6 +28,12 @@ public:
 	double getmGreen();
 	double getmBlue();
 	int getmID();
+
+	void setmX(double x);
+	void setmY(double y);
+	void setmVx(double vx);
+	void setmVy(double vy);
+	void setmD(double d);
 
 	double mAx; // x accel
 	double mAy; // y accel

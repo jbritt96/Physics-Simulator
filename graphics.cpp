@@ -12,7 +12,7 @@ double screen_y = 500;
 
 
 // 0 = collision; 1 = projectile motion; 2 = friction
-int SIMULATION_CHOICE = 1; 
+int SIMULATION_CHOICE = 2; 
 bool DRAW_SCALE = true;
 clock_t start_time = clock();
 
@@ -80,7 +80,7 @@ void display(void)
 		}
 	}
 
-	if (SIMULATION_CHOICE == 2) {
+	/*if (SIMULATION_CHOICE == 2) {
 		for (unsigned int i = 0; i < PROJECTILE_BOXES.size(); i++) {
 			FRICTION_BOXES[i].Draw();
 		}
@@ -90,6 +90,27 @@ void display(void)
 		FS.DrawGround();
 		if (DRAW_SCALE) {
 			FS.DrawScale();
+		}
+	}*/
+	if (SIMULATION_CHOICE == 2) {
+		for (unsigned int i = 0; i < PROJECTILE_BOXES.size(); i++) {
+			FRICTION_BOXES[i].Update(screen_x, screen_y);
+		}
+		FS.DrawGround();
+		if (DRAW_SCALE) {
+			FS.DrawScale();
+		}
+		
+		if (DRAW_TRACE) {
+			FS.Trace(t, FRICTION_BOXES);
+			if (DISPLAY_TRACE_INFO) {
+				if (snapshotIndex != -1) {
+					FS.DisplayTraceInformation(snapshotIndex);
+				}
+			}
+		}
+		for (unsigned int i = 0; i < FRICTION_BOXES.size(); i++) {
+			FRICTION_BOXES[i].Draw();
 		}
 	}
 	glutSwapBuffers();
@@ -132,7 +153,7 @@ void keyboard(unsigned char c, int x, int y)
 			}
 			break;
 		case 'x':
-			if (DRAW_TRACE && SIMULATION_CHOICE == 1) {
+			if (DRAW_TRACE && (SIMULATION_CHOICE == 1 || SIMULATION_CHOICE == 2)) {
 				DRAW_TRACE = false;
 			}
 			else {
@@ -173,6 +194,21 @@ void mousemotion(int x, int y) {
 		}
 		if (!foundBox) {
 		snapshotIndex = -1;
+		}
+	}
+	if (SIMULATION_CHOICE == 2) {
+		vector<Box> snapshots = FS.getSnapshots();
+		bool foundBox = false;
+		for (int i = 0; i < snapshots.size(); i++) {
+			if (snapshots[i].getmX() < x && snapshots[i].getmX() + snapshots[i].getmW() > x && snapshots[i].getmY() < screen_y - y && snapshots[i].getmY() + snapshots[i].getmH() > screen_y - y) {
+				snapshotIndex = i;
+				foundBox = true;
+				DISPLAY_TRACE_INFO = true;
+				break;
+			}
+		}
+		if (!foundBox) {
+			snapshotIndex = -1;
 		}
 	}
 }

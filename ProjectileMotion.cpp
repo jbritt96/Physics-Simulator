@@ -22,15 +22,6 @@ ProjectileMotionSimulation::ProjectileMotionSimulation(int screen_x, int screen_
 	mSnapshots.push_back(b1snap);
 }
 
-
-vector<Box> ProjectileMotionSimulation::getBoxes() {
-	return mBoxes;
-}
-
-vector<Box> ProjectileMotionSimulation::getSnapshots() {
-	return mSnapshots;
-}
-
 vector<Box> ProjectileMotionSimulation::Reset() {
 	vector<Box> newBoxes;
 	vector<Box> newSnapshots;
@@ -52,6 +43,17 @@ vector<Box> ProjectileMotionSimulation::Reset() {
 }
 
 
+vector<Box> ProjectileMotionSimulation::getBoxes() {
+	return mBoxes;
+}
+
+vector<Box> ProjectileMotionSimulation::getSnapshots() {
+	return mSnapshots;
+}
+
+
+
+
 void ProjectileMotionSimulation::calculateProjectile(vector<Box>& b, double time) {
 	if(b[0].getmY() >= 0){
 		for (int i = 0; i < b.size(); i++) {
@@ -62,7 +64,6 @@ void ProjectileMotionSimulation::calculateProjectile(vector<Box>& b, double time
 
 			// calculate x position
 			//double newx = x0 + (xv0 * time) + pow(.5 * xa * time, 2);
-
 			// double newx = x0 + (xv * time) * 200;
 			double newx = x0 + (xv0 * time) + (.5 * xa * pow(time * 2, 2));
 			b[i].setmX(newx);
@@ -74,7 +75,6 @@ void ProjectileMotionSimulation::calculateProjectile(vector<Box>& b, double time
 
 			// calculate x position
 			//double newx = x0 + (xv0 * time) + pow(.5 * xa * time, 2);
-
 			//double newy = y0 + (yv * time) * 100;
 			double newy = y0 + (yv0 * time) + (.5 * ya * pow(time * 2, 2));
 			b[i].setmY(newy);

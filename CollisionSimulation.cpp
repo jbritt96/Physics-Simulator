@@ -23,6 +23,20 @@ CollisionSimulation::CollisionSimulation(int screen_x, int screen_y) {
 	//mBoxes.push_back(box2);
 }
 
+vector<Box> CollisionSimulation::Reset() {
+	vector<Box> newBoxes;
+	Box box1(1, 50, 500 / 2, 20, 20, 1, 0, 0, 0, 0, 1, 0, 0, 10, 0, false, false, true);
+	Box box2(2, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
+	Box box3(3, 350, 500 / 2, 40, 40, -.5, 0, 0, 0, 0, 0, 1, 0, 15, 0, false, false, true);
+
+	//Box box1(1, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
+	//Box box2(2, 50, 500 / 2, 100, 100, 2, 0, 0, 0, 0, 1, 0, 0, 40, 0, false, false, true);
+	newBoxes.push_back(box1);
+	newBoxes.push_back(box2);
+	newBoxes.push_back(box3);
+	return newBoxes;
+}
+
 vector<Box> CollisionSimulation::getBoxes() {
 	return mBoxes;
 }
@@ -62,20 +76,6 @@ void CollisionSimulation::DrawGround() {
 	glVertex2d(mScreen_x, mScreen_y / 2);
 	glVertex2d(0, mScreen_y / 2);
 	glEnd();
-}
-
-vector<Box> CollisionSimulation::Reset() {
-	vector<Box> newBoxes;
-	Box box1(1, 50, 500 / 2, 20, 20, 1, 0, 0, 0, 0, 1, 0, 0, 10, 0, false, false, true);
-	Box box2(2, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
-	Box box3(3, 350, 500 / 2, 40, 40, -.5, 0, 0, 0, 0, 0, 1, 0, 15, 0, false, false, true);
-
-	//Box box1(1, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
-	//Box box2(2, 50, 500 / 2, 100, 100, 2, 0, 0, 0, 0, 1, 0, 0, 40, 0, false, false, true);
-	newBoxes.push_back(box1);
-	newBoxes.push_back(box2);
-	newBoxes.push_back(box3);
-	return newBoxes;
 }
 
 void DrawTextCS(double x, double y, const char* string)
