@@ -10,6 +10,9 @@ FrictionSimulation::FrictionSimulation(int screenx, int screeny) {
 	mScreen_y = screeny;
 	//tilted
 	//Box b1(1, 550, 450, 20, 20, 0, 0, 0, 0, 45, .2, .7, .3, 25, 0, true, true, false);
+
+	// CREATE BOXES HERE
+
 	Box b1(1, 50, 500/2, 20, 20, 2, 0, 0, 0, 0, .2, .7, .3, 25, 0, false, true, false);
 	Box b1snap(1, 50, 500 / 2, 20, 20, 2, 0, 0, 0, 0, 0, 0, 1, 25, 0, false, true, false);
 
@@ -91,12 +94,7 @@ void FrictionSimulation::DrawScale() {
 	}
 }
 
-void FrictionSimulation::CalculateFriction(vector<Box>& b, double time){
-	// y direction: Σfy = 0;
-	// n_force - mass * g = 0
-	// n_force = mass * g
-	double n_force = b[0].getmMass() * -9.8;
-}
+
 
 void FrictionSimulation::Trace(double time, vector<Box>& b) {
 	if (mSnapshots.size() - 1 < (int)time * 2) {

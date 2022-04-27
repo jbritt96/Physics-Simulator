@@ -4,7 +4,6 @@
 class FrictionSimulation {
 public:
 	FrictionSimulation(int screenx, int screeny);
-	void CalculateFriction(vector<Box>& b, double time);
 	vector<Box> getBoxes();
 	void DrawGround();
 	vector<Box> Reset();

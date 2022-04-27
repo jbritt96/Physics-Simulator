@@ -12,7 +12,7 @@ double screen_y = 500;
 
 
 // 0 = collision; 1 = projectile motion; 2 = friction
-int SIMULATION_CHOICE = 2; 
+int SIMULATION_CHOICE = 0; 
 bool DRAW_SCALE = true;
 clock_t start_time = clock();
 
@@ -80,18 +80,6 @@ void display(void)
 		}
 	}
 
-	/*if (SIMULATION_CHOICE == 2) {
-		for (unsigned int i = 0; i < PROJECTILE_BOXES.size(); i++) {
-			FRICTION_BOXES[i].Draw();
-		}
-		for (unsigned int i = 0; i < PROJECTILE_BOXES.size(); i++) {
-			FRICTION_BOXES[i].Update(screen_x, screen_y);
-		}
-		FS.DrawGround();
-		if (DRAW_SCALE) {
-			FS.DrawScale();
-		}
-	}*/
 	if (SIMULATION_CHOICE == 2) {
 		for (unsigned int i = 0; i < PROJECTILE_BOXES.size(); i++) {
 			FRICTION_BOXES[i].Update(screen_x, screen_y);

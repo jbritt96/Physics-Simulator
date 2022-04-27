@@ -9,7 +9,7 @@ CollisionSimulation::CollisionSimulation(int screen_x, int screen_y) {
 	mScreen_x = screen_x;
 	mScreen_y = screen_y;
 	
-
+	// CREATE BOXES HERE
 	Box box1(1, 50, 500 / 2, 20, 20, 1, 0, 0, 0, 0, 1, 0, 0, 10, 0, false, false, true);
 	Box box2(2, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
 	Box box3(3, 350, 500 / 2, 40, 40, -.5, 0, 0, 0, 0, 0, 1, 0, 15, 0, false, false, true);

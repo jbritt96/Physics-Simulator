@@ -8,6 +8,7 @@
 ProjectileMotionSimulation::ProjectileMotionSimulation(int screen_x, int screen_y) {
 	mScreen_x = screen_x;
 	mScreen_y = screen_y;
+	// CREATE BOXES HERE
 	Box b1(1, 50, 0, 20, 20,
 			50, 175, 0, -9.8,
 			0, 1, 0, 0, 10, 0,
