@@ -216,7 +216,7 @@ void mousemotion(int x, int y) {
 int main(int argc, char **argv)
 {
 	cout << "Hotkeys:" << endl
-		<< "a: Inelastic collisions, s: Projectile Motion, d: Friction (not fully implemented)" << endl
+		<< "a: Elastic collisions, s: Projectile Motion, d: Friction (not fully implemented)" << endl
 		<< "r: reset currently selected simulation" << endl
 		<< "z: Toggle scale, x: Toggle snapshots";
 
