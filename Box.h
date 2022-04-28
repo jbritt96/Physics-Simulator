@@ -6,8 +6,8 @@ using namespace std;
 
 class Box {
 public:
-	Box(int id, double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d, 
-		double red, double green, double blue, double mass, double time, bool graivtyon, bool frictionon, bool displaymass);
+	Box(double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d, 
+		double red, double green, double blue, double mass, double time, bool frictionon, bool displaymass);
 	void Draw();
 	void Update(int screen_x, int screen_y);
 	
@@ -27,7 +27,6 @@ public:
 	double getmRed();
 	double getmGreen();
 	double getmBlue();
-	int getmID();
 
 	void setmX(double x);
 	void setmY(double y);
@@ -38,7 +37,6 @@ public:
 	double mAx; // x accel
 	double mAy; // y accel
 private:
-	int mID;
 	double mX;  // x pos
 	double mX0; // initial x pos
 	double mY;  // y pos
@@ -56,7 +54,6 @@ private:
 	double mGreen;
 	double mBlue;
 	double mMass;
-	bool mGravityOn;
 	bool mFrictionOn;
 	bool mDisplayMass;
 };

@@ -3,18 +3,16 @@
 #include "glut.h"
 
 
-//Box(int id, double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
-//	double red, double green, double blue, double mass, double time, bool graivtyon, bool frictionon, bool displaymass);
+//Box(double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
+//	double red, double green, double blue, double mass, double time, bool frictionon, bool displaymass);
 FrictionSimulation::FrictionSimulation(int screenx, int screeny) {
 	mScreen_x = screenx;
 	mScreen_y = screeny;
-	//tilted
-	//Box b1(1, 550, 450, 20, 20, 0, 0, 0, 0, 45, .2, .7, .3, 25, 0, true, true, false);
 
 	// CREATE BOXES HERE
 
-	Box b1(1, 50, 500/2, 20, 20, 2, 0, 0, 0, 0, .2, .7, .3, 25, 0, false, true, false);
-	Box b1snap(1, 50, 500 / 2, 20, 20, 2, 0, 0, 0, 0, 0, 0, 1, 25, 0, false, true, false);
+	Box b1(50, 500/2, 20, 20, 2, 0, 0, 0, 0, .2, .7, .3, 25, 0, true, false);
+	Box b1snap(50, 500 / 2, 20, 20, 2, 0, 0, 0, 0, 0, 0, 1, 25, 0, true, false);
 
 	mBoxes.push_back(b1);
 	mSnapshots.push_back(b1snap);
@@ -23,9 +21,9 @@ FrictionSimulation::FrictionSimulation(int screenx, int screeny) {
 vector<Box> FrictionSimulation::Reset() {
 	vector<Box> newBoxes;
 	vector<Box> newSnapshots;
-	//Box b1(1, 550, 450, 20, 20, 0, 0, 0, 0, 45, .2, .7, .3, 25, 0, true, true, false);
-	Box b1(1, 50, 500 / 2, 20, 20, 2, 0, 0, 0, 0, .2, .7, .3, 25, 0, false, true, false);
-	Box b1snap(1, 50, 500 / 2, 20, 20, 2, 0, 0, 0, 0, 0, 0, 1, 25, 0, false, true, false);
+
+	Box b1(50, 500 / 2, 20, 20, 2, 0, 0, 0, 0, .2, .7, .3, 25, 0, true, false);
+	Box b1snap(50, 500 / 2, 20, 20, 2, 0, 0, 0, 0, 0, 0, 1, 25, 0,  true, false);
 
 	newBoxes.push_back(b1);
 	newSnapshots.push_back(b1snap);
@@ -99,7 +97,6 @@ void FrictionSimulation::DrawScale() {
 void FrictionSimulation::Trace(double time, vector<Box>& b) {
 	if (mSnapshots.size() - 1 < (int)time * 2) {
 		for (int i = 0; i < mBoxes.size(); i++) {
-			int id = b[i].getmID();
 			double x = b[i].getmX();
 			double y = b[i].getmY();
 			double vx = b[i].getmVx();
@@ -112,7 +109,7 @@ void FrictionSimulation::Trace(double time, vector<Box>& b) {
 			double blue = b[i].getmBlue();
 			double mass = b[i].getmMass();
 
-			mSnapshots.push_back(Box(id, x, y, w, h, vx, vy, 0, 0, d, 0, 0, 1, mass, time, false, false, false));
+			mSnapshots.push_back(Box(x, y, w, h, vx, vy, 0, 0, d, 0, 0, 1, mass, time, false, false));
 		}
 	}
 

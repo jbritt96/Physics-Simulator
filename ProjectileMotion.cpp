@@ -3,40 +3,30 @@
 #include "ProjectileMotion.h"
 
 
-//Box(int id, double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
-//	double red, double green, double blue, double mass, double time, bool graivtyon, bool frictionon, bool displaymass);
+//Box(double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
+//	double red, double green, double blue, double mass, double time, bool frictionon, bool displaymass);
 ProjectileMotionSimulation::ProjectileMotionSimulation(int screen_x, int screen_y) {
 	mScreen_x = screen_x;
 	mScreen_y = screen_y;
 	// CREATE BOXES HERE
-	Box b1(1, 50, 0, 20, 20,
-			50, 175, 0, -9.8,
-			0, 1, 0, 0, 10, 0,
-			true, false, false);
-
-	Box b1snap(1, 50, 0, 20, 20,
-		50, 175, 0, -9.8,
-		0, 0, 0, 1, 10, 0,
-		true, false, false);
+	Box b1(50, 0, 20, 20, 50, 175, 0, -9.8, 0, 1, 0, 0, 10, 0, false, false);
+	//Box b2(550, 0, 20, 20, -50, 175, 0, -9.8, 0, 0, 0, 1, 10, 0, false, false);
+	Box b1snap(50, 0, 20, 20, 50, 175, 0, -9.8, 0, 0, 0, 1, 10, 0, false, false);
 
 	mBoxes.push_back(b1);
+	//mBoxes.push_back(b2);
 	mSnapshots.push_back(b1snap);
 }
 
 vector<Box> ProjectileMotionSimulation::Reset() {
 	vector<Box> newBoxes;
 	vector<Box> newSnapshots;
-	Box b1(1, 50, 0, 20, 20,
-		50, 175, 0, -9.8,
-		0, 1, 0, 0, 10, 0,
-		true, false, false);
-
-	Box b1snap(1, 50, 0, 20, 20,
-		50, 175, 0, -9.8,
-		0, 0, 0, 1, 10, 0,
-		true, false, false);
+	Box b1(50, 0, 20, 20, 50, 175, 0, -9.8, 0, 1, 0, 0, 10, 0, false, false);
+	//Box b2(550, 0, 20, 20, -50, 175, 0, -9.8, 0, 0, 0, 1, 10, 0, false, false);
+	Box b1snap(50, 0, 20, 20, 50, 175, 0, -9.8, 0, 0, 0, 1, 10, 0, false, false);
 
 	newBoxes.push_back(b1);
+	//newBoxes.push_back(b2);
 	newSnapshots.push_back(b1snap);
 	mSnapshots = newSnapshots;
 
@@ -56,10 +46,11 @@ vector<Box> ProjectileMotionSimulation::getSnapshots() {
 
 
 void ProjectileMotionSimulation::calculateProjectile(vector<Box>& b, double time) {
-	if(b[0].getmY() >= 0){
-		for (int i = 0; i < b.size(); i++) {
-			static double x0 = b[i].getmX0();
-			static double xv0 = b[i].getmVx0();
+	
+	for (int i = 0; i < b.size(); i++) {
+		if (b[i].getmY() >= 0) {
+			double x0 = b[i].getmX0();
+			double xv0 = b[i].getmVx0();
 			double xv = b[i].getmVx();
 			double xa = b[i].mAx;
 
@@ -126,11 +117,9 @@ void ProjectileMotionSimulation::DrawScale() {
 }
 
 
-// Box(int id, double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d, double red, double green, double blue, double mass, bool graivtyon, bool frictionon)
 void ProjectileMotionSimulation::Trace(double time, vector<Box>& b) {
 	if (mSnapshots.size() - 1 < (int) time * 2) {
 		for (int i = 0; i < mBoxes.size(); i++) {
-			int id = b[i].getmID();
 			double x = b[i].getmX();
 			double y = b[i].getmY();
 			double vx = b[i].getmVx();
@@ -143,11 +132,9 @@ void ProjectileMotionSimulation::Trace(double time, vector<Box>& b) {
 			double blue = b[i].getmBlue();
 			double mass = b[i].getmMass();
 
-			mSnapshots.push_back(Box(id, x, y, w, h, vx, vy, 0, 0, d, 0, 0, 1, mass, time, false, false, false));
+			mSnapshots.push_back(Box(x, y, w, h, vx, vy, 0, 0, d, 0, 0, 1, mass, time, false, false));
 		}
 	}
-
-	
 
 	for (int i = 0; i < mSnapshots.size() - 1; i++) {
 		glColor3d(0, 0, 0);

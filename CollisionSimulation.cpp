@@ -3,34 +3,35 @@
 #include "glut.h"
 
 
-//Box(int id, double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
-//	double red, double green, double blue, double mass, double time, bool graivtyon, bool frictionon, bool displaymass);
+//Box(double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
+//	double red, double green, double blue, double mass, double time, bool frictionon, bool displaymass);
 CollisionSimulation::CollisionSimulation(int screen_x, int screen_y) {
 	mScreen_x = screen_x;
 	mScreen_y = screen_y;
 	
 	// CREATE BOXES HERE
-	Box box1(1, 50, 500 / 2, 20, 20, 1, 0, 0, 0, 0, 1, 0, 0, 10, 0, false, false, true);
-	Box box2(2, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
-	Box box3(3, 350, 500 / 2, 40, 40, -.5, 0, 0, 0, 0, 0, 1, 0, 15, 0, false, false, true);
+	//Box box1(550, 250, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, true);
+	//Box box2( 50, 250, 100, 100,  2, 0, 0, 0, 0, 1, 0, 0, 40, 0, false, true);
+	/*Box box1(550, 250, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, true);
+	Box box2( 50, 250, 100, 100,  4, 0, 0, 0, 0, 1, 0, 0, 20, 0, false, true);*/
+
+	Box box1(50, 500 / 2, 20, 20, 1, 0, 0, 0, 0, 1, 0, 0, 10, 0, false, true);
+	Box box2(550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, true);
+	Box box3(350, 500 / 2, 40, 40, -.5, 0, 0, 0, 0, 0, 1, 0, 15, 0, false, true);
+
 	mBoxes.push_back(box1);
 	mBoxes.push_back(box2);
 	mBoxes.push_back(box3);
-
-	//Box box1(1, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
-	//Box box2(2, 50, 500 / 2, 100, 100, 2, 0, 0, 0, 0, 1, 0, 0, 40, 0, false, false, true);
-	//mBoxes.push_back(box1);
-	//mBoxes.push_back(box2);
 }
 
 vector<Box> CollisionSimulation::Reset() {
 	vector<Box> newBoxes;
-	Box box1(1, 50, 500 / 2, 20, 20, 1, 0, 0, 0, 0, 1, 0, 0, 10, 0, false, false, true);
-	Box box2(2, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
-	Box box3(3, 350, 500 / 2, 40, 40, -.5, 0, 0, 0, 0, 0, 1, 0, 15, 0, false, false, true);
+	Box box1( 50, 500 / 2,  20,  20,   1, 0, 0, 0, 0, 1, 0, 0, 10, 0, false, true);
+	Box box2(550, 500 / 2, 100, 100,  -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, true);
+	Box box3(350, 500 / 2,  40,  40, -.5, 0, 0, 0, 0, 0, 1, 0, 15, 0, false, true);
 
-	//Box box1(1, 550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, false, true);
-	//Box box2(2, 50, 500 / 2, 100, 100, 2, 0, 0, 0, 0, 1, 0, 0, 40, 0, false, false, true);
+	//Box box1(550, 500 / 2, 100, 100, -2, 0, 0, 0, 0, 0, 0, 1, 40, 0, false, true);
+	//Box box2( 50, 500 / 2, 100, 100, 2, 0, 0, 0, 0, 1, 0, 0, 40, 0, false, true);
 	newBoxes.push_back(box1);
 	newBoxes.push_back(box2);
 	newBoxes.push_back(box3);

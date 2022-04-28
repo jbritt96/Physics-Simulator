@@ -60,10 +60,7 @@ void display(void)
 	}
 
 	if (SIMULATION_CHOICE == 1) {
-		for (unsigned int i = 0; i < PROJECTILE_BOXES.size(); i++) {
-			PS.calculateProjectile(PROJECTILE_BOXES, t);
-			
-		}
+		PS.calculateProjectile(PROJECTILE_BOXES, t);
 		if (DRAW_SCALE) {
 			PS.DrawScale();
 		}
@@ -81,7 +78,7 @@ void display(void)
 	}
 
 	if (SIMULATION_CHOICE == 2) {
-		for (unsigned int i = 0; i < PROJECTILE_BOXES.size(); i++) {
+		for (unsigned int i = 0; i < FRICTION_BOXES.size(); i++) {
 			FRICTION_BOXES[i].Update(screen_x, screen_y);
 		}
 		FS.DrawGround();
@@ -114,12 +111,15 @@ void keyboard(unsigned char c, int x, int y)
 			exit(0);
 			break;
 		case 'a':
+			snapshotIndex = -1;
 			SIMULATION_CHOICE = 0;
 			break;
 		case 's':
+			snapshotIndex = -1;
 			SIMULATION_CHOICE = 1;
 			break;
 		case 'd':
+			snapshotIndex = -1;
 			SIMULATION_CHOICE = 2;
 			break;
 		case 'r':

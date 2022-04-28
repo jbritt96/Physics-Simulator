@@ -3,9 +3,8 @@
 #include "Box.h"
 #include "glut.h"
 
-Box::Box(int id, double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
-		double red, double green, double blue, double mass, double time, bool graivtyon, bool frictionon, bool displaymass) {
-	mID = id;
+Box::Box(double x, double y, double w, double h, double vx, double vy, double ax, double ay, double d,
+		double red, double green, double blue, double mass, double time, bool frictionon, bool displaymass) {
 	mX = x;
 	mY = y;
 	mW = w;
@@ -19,7 +18,6 @@ Box::Box(int id, double x, double y, double w, double h, double vx, double vy, d
 	mMass = mass;
 	mTime = time;
 
-	mGravityOn = graivtyon;
 	mFrictionOn = frictionon;
 	mDisplayMass = displaymass;
 
@@ -78,11 +76,6 @@ void Box::Draw() {
 }
 
 void Box::Update(int screen_x, int screen_y) {
-	if (mGravityOn) {
-		const double G = .03;
-		mVy -= G;
-	}
-
 	if (mFrictionOn) {
 		const double FRICTION = .997;
 		mVx *= FRICTION;
@@ -172,9 +165,6 @@ double Box::getmBlue() {
 	return mBlue;
 }
 
-int Box::getmID() {
-	return mID;
-}
 
 double Box::getmTime() {
 	return mTime;
