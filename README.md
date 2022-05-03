@@ -1,5 +1,9 @@
 # Physics-Simulator
 
+![alt text](readme_screenshot.png "Projectile Motion Example")
+
+This is a physics simulator that I created for my senior project. It current simulates elastic collisions, projectile motion, and friction. 
+
 ### Hotkeys
 
 #### Simulations
